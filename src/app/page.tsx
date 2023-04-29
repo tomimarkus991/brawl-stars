@@ -1,18 +1,20 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
+import { useGetPlayer } from "../hooks/queries/useGetPlayer";
 
 export default function Page() {
-  return (
-    <main>
-      <p>Page content</p>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+  const { data } = useGetPlayer("99YCLGVJQ");
 
-      <Link href="about">
-        <p className="text-xl text-red-500">Go to About page</p>
-      </Link>
-      <Image src="/favicon.svg" alt="Logo" width={100} height={24} priority />
-    </main>
+  return (
+    <div className="flex h-[100vh] items-center justify-center bg-slate-900">
+      <p className="text-4xl text-red-700">{data.data.name}</p>
+      <div className="grid grid-flow-col grid-rows-6 gap-4">
+        {data.data.brawlers.map((brawler: any) => (
+          <div key={brawler.name}>
+            <p className="text-4xl text-red-700">{brawler.name}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

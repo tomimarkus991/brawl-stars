@@ -17,3 +17,7 @@ export interface NavItem {
   disabled?: boolean;
   external?: boolean;
 }
+
+export type ResponseError = {
+  message: string;
+};
